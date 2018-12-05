@@ -1,0 +1,7 @@
+[
+  {"robot": 0, "you": 1},
+  {"robot": 1, "you": 0},
+  {"robot": 2, "you": 0},
+  {"robot": 1, "you": 2},
+  {"robot": 1, "you": 1}
+]
