@@ -1,0 +1,64 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <array>
+#include <set>
+#include <map>
+
+using namespace std;
+
+std::array<char, 4>result;
+std::set<std::string>permutations;
+void ConstructStringFromArray()
+{
+    std::string s;
+    for(auto it : result)
+    {
+        s += it;
+    }
+    permutations.insert(s);
+    std::cout << s <<  " : " <<  std::endl;
+}
+void Permute(std::map<char, int>& charCount, int arrayPos)
+{
+    if(arrayPos == result.size())
+    {
+        ConstructStringFromArray();
+        return;
+    }
+    for(auto it : charCount)
+    {
+        if(it.second == 0)
+        continue;
+        
+        result[arrayPos] = it.first;
+        charCount[it.first]--;
+        Permute(charCount, arrayPos+1);
+        charCount[it.first]++;
+    }
+    
+}
+
+void PermutationUtils(std::string& input)
+{
+    std::map<char, int>charCount;
+    for(auto it : input)
+    {
+        charCount[it]++;
+    }
+    
+    Permute(charCount, 0);
+}
+
+int main()
+{
+    std::string S = "AABC"; 
+    PermutationUtils(S);
+    return 0;
+}
