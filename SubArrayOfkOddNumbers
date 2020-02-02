@@ -1,0 +1,27 @@
+#include <iostream>
+#include <map>
+
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        std::map<int, int>prefixMapCount;
+        int oddCount = 0;
+        int niceArrayCount = 0;
+        
+        for(int i = 0; i < nums.size(); i++)
+        {
+            prefixMapCount[oddCount] += 1;
+            
+            if(nums[i] % 2)
+            {
+                oddCount += 1;
+            }
+            
+            if(oddCount >= k)
+            {
+                niceArrayCount += prefixMapCount[oddCount-k];
+            }
+        }
+        return niceArrayCount;
+    }
+};
